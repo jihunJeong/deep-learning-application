@@ -9,6 +9,7 @@ from pathlib import Path
 from torchvision import transforms
 from torch.utils.data import DataLoader
 from torchvision.datasets import MNIST
+from torchsummary import summary
 
 class Cnn(nn.Module):
     def __init__(self):
@@ -77,7 +78,7 @@ if __name__ == "__main__":
     total_batch = len(train_dataset)
 
     model = Cnn().to(device)
-    print(model)
+    summary(model, (1, 28, 28))
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
     for epoch in range(Epochs):
